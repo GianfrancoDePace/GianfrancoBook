@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { ApolloProvider, InMemoryCache, ApolloClient } from "@apollo/client";
+import AddUserForm from "./pages/AddUser";
+import UserList from "./pages/UserList";
+import UpdateUser from "./pages/UpdateUser";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const client = new ApolloClient({
+  uri: "http://192.168.1.30:4000", // URL of your Apollo Server
+  cache: new InMemoryCache(),
 });
+
+const Stack = createStackNavigator();
+
+const App = () => {
+  return (
+    <ApolloProvider client={client}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="AddUser">
+          <Stack.Screen name="AddUser" component={AddUserForm} />
+          <Stack.Screen name="UserList" component={UserList} />
+          <Stack.Screen name="UpdateUser" component={UpdateUser} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ApolloProvider>
+  );
+};
+
+export default App;
