@@ -5,6 +5,8 @@ import { ApolloProvider, InMemoryCache, ApolloClient } from "@apollo/client";
 import AddUserForm from "./pages/AddUser";
 import UserList from "./pages/UserList";
 import UpdateUser from "./pages/UpdateUser";
+import HomeScreen from "./pages/Home";
+import UserProfile from "./pages/userProfile";
 
 const client = new ApolloClient({
   uri: "http://192.168.1.30:4000", // URL of your Apollo Server
@@ -17,8 +19,10 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="AddUser">
-          <Stack.Screen name="AddUser" component={AddUserForm} />
+        <Stack.Navigator initialRouteName="Homepage">
+        <Stack.Screen name="Homepage" component={HomeScreen} />
+        <Stack.Screen name="UserProfile" component={UserProfile} />
+          <Stack.Screen name="createUser" component={AddUserForm} />
           <Stack.Screen name="UserList" component={UserList} />
           <Stack.Screen name="UpdateUser" component={UpdateUser} />
         </Stack.Navigator>

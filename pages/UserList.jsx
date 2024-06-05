@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, Button, Alert } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Image, Alert, TouchableOpacity, ImageBackground } from 'react-native';
 import { useQuery, useMutation, gql } from '@apollo/client';
+import { Avatar, Card } from '@rneui/themed';
 import Header from '../components/header';
+import Footer from '../components/footer';
 
 // Define queries and mutations
 const GET_USERS = gql`
@@ -22,20 +24,6 @@ const DELETE_USER = gql`
   mutation DeleteUser($id: ID!) {
     deleteUser(id: $id) {
       id
-    }
-  }
-`;
-
-const UPDATE_USER = gql`
-  mutation UpdateUser($id: ID!, $username: String!, $email: String!, $password: String!, $city: String!, $dateOfBirth: String!, $bio: String!) {
-    updateUser(id: $id, username: $username, email: $email, password: $password, city: $city, dateOfBirth: $dateOfBirth, bio: $bio) {
-      id
-      username
-      email
-      password
-      city
-      dateOfBirth
-      bio
     }
   }
 `;
@@ -67,18 +55,23 @@ const UserList = ({ navigation }) => {
         data={data.users}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <View style={styles.item}>
-            <Text style={styles.title}>{item.username}</Text>
-            <Text style={styles.email}>{item.email}</Text>
-            <Text style={styles.title}>{item.password}</Text>
-            <Text style={styles.title}>{item.city}</Text>
-            <Text style={styles.title}>{item.dateOfBirth}</Text>
-            <Text style={styles.title}>{item.bio}</Text>
-            <Button title="Delete" onPress={() => handleDeleteUser(item.id)} />
-            <Button title="Update" onPress={() => navigation.navigate('UpdateUser', { user: item })} />
-          </View>
+          <TouchableOpacity onPress={() => navigation.navigate('UserProfile', { user: item })}>
+            <Card>
+              <ImageBackground style={styles.Image} source={require("../assets/favicon.png")} />
+              <Avatar source={{ uri: "https://randomuser.me/api/portraits/men/36.jpg" }} />
+              <Text style={styles.title}>@{item.username}</Text>
+              <Text style={styles.bio}>{item.bio}</Text>
+              {/* <TouchableOpacity onPress={() => handleDeleteUser(item.id)}>
+                <Text style={styles.button}>Delete</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('UpdateUser', { user: item })}>
+                <Text style={styles.button}>Update</Text>
+              </TouchableOpacity> */}
+            </Card>
+          </TouchableOpacity>
         )}
       />
+      <Footer />
     </View>
   );
 };
@@ -94,6 +87,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
+  Image: {
+    width: 90,
+    height: 90,
+    opacity: 1
+  },
   item: {
     marginBottom: 10,
     padding: 10,
@@ -102,7 +100,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
   },
-  email: {
+  bio: {
     fontSize: 14,
     color: '#555',
   },
