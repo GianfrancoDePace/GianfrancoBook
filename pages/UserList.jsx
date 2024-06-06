@@ -4,6 +4,7 @@ import { useQuery, useMutation, gql } from '@apollo/client';
 import { Avatar, Card } from '@rneui/themed';
 import Header from '../components/header';
 import Footer from '../components/footer';
+import { Button } from '@rneui/base';
 
 // Define queries and mutations
 const GET_USERS = gql`
@@ -61,12 +62,7 @@ const UserList = ({ navigation }) => {
               <Avatar source={{ uri: "https://randomuser.me/api/portraits/men/36.jpg" }} />
               <Text style={styles.title}>@{item.username}</Text>
               <Text style={styles.bio}>{item.bio}</Text>
-              {/* <TouchableOpacity onPress={() => handleDeleteUser(item.id)}>
-                <Text style={styles.button}>Delete</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('UpdateUser', { user: item })}>
-                <Text style={styles.button}>Update</Text>
-              </TouchableOpacity> */}
+              <Button style= {styles.title} onPress={(handleDeleteUser)}/>
             </Card>
           </TouchableOpacity>
         )}

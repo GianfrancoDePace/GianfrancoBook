@@ -16,7 +16,19 @@ const GET_USERS = gql`
     }
   }
 `;
+const GET_POSTS = gql`
+query GetPosts {
+  posts  {
+    id
+    content
+    author {
+      id
+      username
+    }
 
+  }
+}
+`
 const ADD_USER = gql`
   mutation AddUser($username: String!, $email: String!, $password: String!, $city: String!, $dateOfBirth: String!, $bio: String!, ) {
     addUser(username: $username, email: $email, password: $password, city: $city, dateOfBirth: $dateOfBirth, bio: $bio) {
@@ -56,5 +68,18 @@ const DELETE_USER = gql`
   }
 `;
 
+const ADD_POST = gql`
+  mutation AddPost($content: String!, $authorId: ID!) {
+    addPost(content: $content, authorId: $authorId) {
+      id
+      content
+      author {
+        id
+        username
+      }
+      createdAt
+    }
+  }
+`;
 
-export {GET_USERS,UPDATE_USER, DELETE_USER,ADD_USER}
+export { GET_USERS, GET_POSTS, UPDATE_USER, DELETE_USER, ADD_USER, ADD_POST }
