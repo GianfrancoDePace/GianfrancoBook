@@ -22,7 +22,7 @@ const App = () => {
         <Stack.Navigator initialRouteName="Homepage">
         <Stack.Screen name="Homepage" component={HomeScreen} />
         <Stack.Screen name="UserProfile" component={UserProfile} />
-          <Stack.Screen name="createUser" component={AddUserForm} />
+          <Stack.Screen name="Registrazione" component={AddUserForm} />
           <Stack.Screen name="UserList" component={UserList} />
           <Stack.Screen name="UpdateUser" component={UpdateUser} />
         </Stack.Navigator>

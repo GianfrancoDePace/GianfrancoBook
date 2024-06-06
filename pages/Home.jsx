@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, Image, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, Button, Image, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -7,20 +7,18 @@ const HomeScreen = ({ navigation }) => {
       <View style={styles.overlay}>
         <Image source={require("../assets/favicon.png")} style={styles.logo} />
         <Text style={styles.title}>Benvenuto al Social Network</Text>
-        <Image
-          source={{ uri: 'https://via.placeholder.com/150' }}
-          style={styles.image}
-        />
-        <Button
-          title="Crea Profilo"
-          color="#841584"
-          onPress={() => navigation.navigate('createUser')}
-        />
-        <Button
-          title="Accedi"
-          color="#841584"
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Registrazione')}
+        >
+          <Text style={styles.buttonText}>Crea Profilo</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
           onPress={() => navigation.navigate('UserList')}
-        />
+        >
+          <Text style={styles.buttonText}>Accedi</Text>
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -36,7 +34,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.7)',
     padding: 16,
     width: '100%',
   },
@@ -50,16 +48,32 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff',
     marginBottom: 20,
+    textAlign: 'center',
   },
-  image: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
+  imageGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
     marginBottom: 20,
   },
+  image: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
+    margin: 5,
+  },
   button: {
-    width: '80%',
+    backgroundColor: '#',
+    borderRadius: 25,
+    padding: 10,
+    width: '100%',
+    alignItems: 'center',
     marginVertical: 10,
+  },
+
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
   },
 });
 

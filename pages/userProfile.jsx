@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import CreatePost from '../components/posts';
 import { Avatar } from '@rneui/base';
+import { GET_POSTS } from '../Queries/GetData';
 
 const UserProfile = ({ route, navigation }) => {
   const { user } = route.params;
@@ -9,7 +10,9 @@ const UserProfile = ({ route, navigation }) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
-      <Avatar source={{ uri: "https://randomuser.me/api/portraits/men/36.jpg" }} />
+        <View style={styles.avatarContainer}>
+          <Avatar size={100} rounded source={{ uri: "https://randomuser.me/api/portraits/men/36.jpg" }} />
+        </View>
         <Text style={styles.username}>{user.username}</Text>
         <View style={styles.statsContainer}>
           <View style={styles.stat}>
@@ -20,7 +23,7 @@ const UserProfile = ({ route, navigation }) => {
             <Text style={styles.statNumber}>3K</Text>
             <Text style={styles.statLabel}>Followers</Text>
           </View>
-          <View style={styles.stat}>  
+          <View style={styles.stat}>
             <Text style={styles.statNumber}>500</Text>
             <Text style={styles.statLabel}>Following</Text>
           </View>
@@ -38,12 +41,7 @@ const UserProfile = ({ route, navigation }) => {
       <View style={styles.postContainer}>
         <CreatePost userId={user.id} />
       </View>
-      {/* Example Posts */}
       <View style={styles.posts}>
-        <Image source={{ uri: 'https://via.placeholder.com/150' }} style={styles.postImage} />
-        <Image source={{ uri: 'https://via.placeholder.com/150' }} style={styles.postImage} />
-        <Image source={{ uri: 'https://via.placeholder.com/150' }} style={styles.postImage} />
-        {/* Add more posts as needed */}
       </View>
     </ScrollView>
   );
@@ -60,12 +58,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
   },
-  avatar: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    marginBottom: 10,
-  },
   username: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -73,6 +65,13 @@ const styles = StyleSheet.create({
   statsContainer: {
     flexDirection: 'row',
     marginTop: 10,
+  },
+  avatarContainer: {
+    borderColor: "black",
+    borderRadius: 50,
+    borderWidth:3, 
+    position: 'relative',
+    padding:null,
   },
   stat: {
     alignItems: 'center',

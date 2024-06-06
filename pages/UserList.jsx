@@ -58,11 +58,13 @@ const UserList = ({ navigation }) => {
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => navigation.navigate('UserProfile', { user: item })}>
             <Card>
-              <ImageBackground style={styles.Image} source={require("../assets/favicon.png")} />
-              <Avatar source={{ uri: "https://randomuser.me/api/portraits/men/36.jpg" }} />
+              <ImageBackground style={styles.image} source={require("../assets/favicon.png")} />
+              <View style={styles.avatarContainer}>
+                <Avatar size={100} rounded source={{ uri: "https://randomuser.me/api/portraits/men/36.jpg" }} />
+              </View>
               <Text style={styles.title}>@{item.username}</Text>
               <Text style={styles.bio}>{item.bio}</Text>
-              <Button style= {styles.title} onPress={(handleDeleteUser)}/>
+              <Button title="Delete User" onPress={() => handleDeleteUser(item.id)} />
             </Card>
           </TouchableOpacity>
         )}
@@ -83,10 +85,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
-  Image: {
+  image: {
     width: 90,
     height: 90,
-    opacity: 1
+    opacity: 1,
+  },
+  avatarContainer: {
+    borderColor: "black",
+    borderRadius: 50,
+    borderWidth:3, 
+    position: 'absolute',
+    bottom: 50,
+    right: 5,
+    padding:null,
   },
   item: {
     marginBottom: 10,
@@ -95,10 +106,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
+    marginTop: 80, // Adjusted to give space for the avatar
   },
   bio: {
     fontSize: 14,
     color: '#555',
+    marginBottom: 10,
   },
   error: {
     color: 'red',
