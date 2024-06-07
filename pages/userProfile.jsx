@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
-import CreatePost from '../components/posts';
 import { Avatar } from '@rneui/base';
-import { GET_POSTS } from '../Queries/GetData';
+import { Badge } from '@rneui/themed';
+import CreatePost from '../components/posts';
+import PostsList from './PostsList';
 
 const UserProfile = ({ route, navigation }) => {
   const { user } = route.params;
@@ -12,6 +13,10 @@ const UserProfile = ({ route, navigation }) => {
       <View style={styles.header}>
         <View style={styles.avatarContainer}>
           <Avatar size={100} rounded source={{ uri: "https://randomuser.me/api/portraits/men/36.jpg" }} />
+          <Badge
+            status="success"
+            containerStyle={{ position: 'absolute', bottom: 5, right: 15 }}
+          />
         </View>
         <Text style={styles.username}>{user.username}</Text>
         <View style={styles.statsContainer}>
@@ -42,6 +47,7 @@ const UserProfile = ({ route, navigation }) => {
         <CreatePost userId={user.id} />
       </View>
       <View style={styles.posts}>
+        <PostsList userId={user.id} />
       </View>
     </ScrollView>
   );
@@ -69,9 +75,8 @@ const styles = StyleSheet.create({
   avatarContainer: {
     borderColor: "black",
     borderRadius: 50,
-    borderWidth:3, 
     position: 'relative',
-    padding:null,
+    padding: null,
   },
   stat: {
     alignItems: 'center',

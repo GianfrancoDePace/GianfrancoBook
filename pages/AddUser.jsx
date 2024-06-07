@@ -24,30 +24,9 @@ const AddUserForm = ({ navigation }) => {
     return passwordRegex.test(password);
   };
 
-  const validateDateOfBirth = (date) => {
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-    if (!dateRegex.test(date)) return false;
-
-    const parsedDate = new Date(date);
-    if (!(parsedDate instanceof Date) || isNaN(parsedDate)) return false;
-    const age = calculateAge(parsedDate);
-
-    return parseInt(age)>= 13;
-  
-  };
-  const calculateAge = (birthDate) => {
-    const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDiff = today.getMonth() - birthDate.getMonth();
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    return age;
-  };
-
   const handleAddUser = () => {
     const newErrors = {};
-    
+
     if (!username) newErrors.username = 'Campo obbligatorio';
     if (!email) newErrors.email = 'Campo obbligatorio';
     if (!validateEmail(email)) newErrors.email = 'Email non valida';
@@ -55,9 +34,6 @@ const AddUserForm = ({ navigation }) => {
     if (!validatePassword(password)) newErrors.password = 'La password deve contenere lettere maiuscole, minuscole e almeno un carattere speciale';
     if (!city) newErrors.city = 'Campo obbligatorio';
     if (!dateOfBirth) newErrors.dateOfBirth = 'Campo obbligatorio';
-    if (!validateDateOfBirth(dateOfBirth)) newErrors.dateOfBirth = 'Data di nascita non valida o età inferiore a 13 anni';
-    if (!bio) newErrors.bio = 'Campo obbligatorio';
-
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
@@ -85,7 +61,7 @@ const AddUserForm = ({ navigation }) => {
         onChangeText={setUsername}
       />
       {errors.username && <Text style={styles.errorText}>{errors.username}</Text>}
-      
+
       <TextInput
         style={[styles.input, errors.email && styles.errorInput]}
         placeholder="Email"
@@ -94,7 +70,7 @@ const AddUserForm = ({ navigation }) => {
         keyboardType="email-address"
       />
       {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
-      
+
       <TextInput
         style={[styles.input, errors.password && styles.errorInput]}
         placeholder="Password"
@@ -103,7 +79,7 @@ const AddUserForm = ({ navigation }) => {
         secureTextEntry={true}
       />
       {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
-      
+
       <TextInput
         style={[styles.input, errors.city && styles.errorInput]}
         placeholder="City"
@@ -111,7 +87,7 @@ const AddUserForm = ({ navigation }) => {
         onChangeText={setCity}
       />
       {errors.city && <Text style={styles.errorText}>{errors.city}</Text>}
-      
+
       <TextInput
         style={[styles.input, errors.dateOfBirth && styles.errorInput]}
         placeholder="Date of Birth (YYYY-MM-DD)"
@@ -119,7 +95,7 @@ const AddUserForm = ({ navigation }) => {
         onChangeText={setDateOfBirth}
       />
       {errors.dateOfBirth && <Text style={styles.errorText}>{errors.dateOfBirth}</Text>}
-      
+
       <TextInput
         style={[styles.input, styles.bioInput, errors.bio && styles.errorInput]}
         placeholder="Bio"
@@ -129,7 +105,7 @@ const AddUserForm = ({ navigation }) => {
         numberOfLines={4}
       />
       {errors.bio && <Text style={styles.errorText}>{errors.bio}</Text>}
-      
+
       <Button title="Add User" onPress={handleAddUser} disabled={loading} />
       {loading && <Text>Loading...</Text>}
       {error && <Text style={styles.error}>Error: {error.message}</Text>}
