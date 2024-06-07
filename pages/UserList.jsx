@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     opacity: 1,
   },
   avatarContainer: {
-    borderColor: "black",
+    borderColor: "white",
     borderRadius: 50,
     borderWidth:3, 
     position: 'absolute',

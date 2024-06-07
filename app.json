@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "book-list",
-    "slug": "book-list",
+    "name": "GianfrancoBook",
+    "slug": "GianfrancoBook",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
