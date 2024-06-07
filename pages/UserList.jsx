@@ -64,7 +64,7 @@ const UserList = ({ navigation }) => {
               </View>
               <Text style={styles.title}>@{item.username}</Text>
               <Text style={styles.bio}>{item.bio}</Text>
-              <Button title="Delete User" onPress={() => handleDeleteUser(item.id)} />
+              <Button title="Cancella utente" onPress={() => handleDeleteUser(item.id)} />
             </Card>
           </TouchableOpacity>
         )}
