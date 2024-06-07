@@ -1,9 +1,0 @@
-todo progetto esposito:
-- creazione crud (implementare delete e update) delle info di un profilo - fatto
-- creazione di card contenenti i vari profili, che una volta toccati aprono il singolo profilo, con un layout tipo social network, contenenti i posts e le pagine seguite - fatto
-- creazione dei type likeddpages, con consegunte pagine seguite e dei resolvers legati alle pagine e ai post - mi limito solo ai post per ora ? 
--creazione di un componente header contenente il nome del sito (vedere twitter?) - fatto migliorare
-- interazione con database mongoDB per il salvataggio dati ( manca domani ?) 
-- ppt presentazione 
-
-ODIO QUESTO PROGETTO

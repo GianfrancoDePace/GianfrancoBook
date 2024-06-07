@@ -6,7 +6,7 @@ const HomeScreen = ({ navigation }) => {
     <ImageBackground source={require("../assets/icon.png")} style={styles.background}>
       <View style={styles.overlay}>
         <Image source={require("../assets/favicon.png")} style={styles.logo} />
-        <Text style={styles.title}>Benvenuto al Social Network</Text>
+        <Text style={styles.title}>Benvenuto su GianfrancoBook</Text>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('Registrazione')}
@@ -15,7 +15,7 @@ const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('UserList')}
+          onPress={() => navigation.navigate('Lista Utenti')}
         >
           <Text style={styles.buttonText}>Accedi</Text>
         </TouchableOpacity>

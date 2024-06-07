@@ -18,7 +18,7 @@ const UpdateUser = ({ route, navigation }) => {
     updateUser({ variables: { id: user.id, username, email, password, city, dateOfBirth, bio } })
       .then(() => {
         Alert.alert('User updated successfully');
-        navigation.navigate('UserList');
+        navigation.navigate('Lista Utenti');
       })
       .catch((err) => {
         Alert.alert('Error updating user', err.message);

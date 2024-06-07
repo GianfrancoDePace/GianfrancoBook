@@ -21,10 +21,10 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Homepage">
         <Stack.Screen name="Homepage" component={HomeScreen} />
-        <Stack.Screen name="UserProfile" component={UserProfile} />
+        <Stack.Screen name="Profilo Utente" component={UserProfile} />
           <Stack.Screen name="Registrazione" component={AddUserForm} />
-          <Stack.Screen name="UserList" component={UserList} />
-          <Stack.Screen name="UpdateUser" component={UpdateUser} />
+          <Stack.Screen name="Lista Utenti" component={UserList} />
+          <Stack.Screen name="Aggiorna Utente" component={UpdateUser} />
         </Stack.Navigator>
       </NavigationContainer>
     </ApolloProvider>

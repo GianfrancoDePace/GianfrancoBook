@@ -40,7 +40,7 @@ const AddUserForm = ({ navigation }) => {
     }
 
     addUser({ variables: { username, email, password, city, dateOfBirth, bio } }).then(() => {
-      navigation.navigate('UserList');
+      navigation.navigate('Lista Utenti');
     });
 
     setUsername('');

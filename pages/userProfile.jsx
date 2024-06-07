@@ -39,9 +39,9 @@ const UserProfile = ({ route, navigation }) => {
       </View>
       <TouchableOpacity
         style={styles.editProfileButton}
-        onPress={() => navigation.navigate('UpdateUser', { user })}
+        onPress={() => navigation.navigate('Aggiorna Utente', { user })}
       >
-        <Text style={styles.editProfileButtonText}>Edit Profile</Text>
+        <Text style={styles.editProfileButtonText}>Edita Profilo</Text>
       </TouchableOpacity>
       <View style={styles.postContainer}>
         <CreatePost userId={user.id} />

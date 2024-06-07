@@ -56,7 +56,7 @@ const UserList = ({ navigation }) => {
         data={data.users}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate('UserProfile', { user: item })}>
+          <TouchableOpacity onPress={() => navigation.navigate('Profilo Utente', { user: item })}>
             <Card>
               <ImageBackground style={styles.image} source={require("../assets/favicon.png")} />
               <View style={styles.avatarContainer}>
