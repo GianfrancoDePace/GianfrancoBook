@@ -9,7 +9,7 @@ const Header = () => {
         style={styles.logo}
         resizeMode="contain"
       />
-      <Text style={styles.title}>SocialNet</Text>
+      <Text style={styles.title}>GianfrancoBook</Text>
     </View>
   );
 };
