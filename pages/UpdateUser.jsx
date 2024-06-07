@@ -27,7 +27,7 @@ const UpdateUser = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Update User</Text>
+      <Text style={styles.header}>Aggiorna Utente</Text>
       <TextInput
         style={styles.input}
         placeholder="Username"
@@ -68,7 +68,7 @@ const UpdateUser = ({ route, navigation }) => {
         multiline={true}
         numberOfLines={4}
       />
-      <Button title="Update User" onPress={handleUpdateUser} disabled={loading} />
+      <Button title="Aggiorna Utente" onPress={handleUpdateUser} disabled={loading} />
       {loading && <Text>Loading...</Text>}
       {error && <Text style={styles.error}>Error: {error.message}</Text>}
     </View>
