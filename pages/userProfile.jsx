@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Avatar } from '@rneui/base';
 import { Badge } from '@rneui/themed';
 import CreatePost from '../components/posts';
@@ -7,6 +7,11 @@ import PostsList from './PostsList';
 
 const UserProfile = ({ route, navigation }) => {
   const { user } = route.params;
+  const [postCount, setPostCount] = useState(150); // Assuming initial post count is 150
+
+  const handlePostAdded = () => {
+    setPostCount(postCount + 1);
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -21,7 +26,7 @@ const UserProfile = ({ route, navigation }) => {
         <Text style={styles.username}>{user.username}</Text>
         <View style={styles.statsContainer}>
           <View style={styles.stat}>
-            <Text style={styles.statNumber}>150</Text>
+            <Text style={styles.statNumber}>{postCount}</Text>
             <Text style={styles.statLabel}>Posts</Text>
           </View>
           <View style={styles.stat}>
@@ -44,7 +49,7 @@ const UserProfile = ({ route, navigation }) => {
         <Text style={styles.editProfileButtonText}>Edita Profilo</Text>
       </TouchableOpacity>
       <View style={styles.postContainer}>
-        <CreatePost userId={user.id} />
+        <CreatePost userId={user.id} onPostAdded={handlePostAdded} />
       </View>
       <View style={styles.posts}>
         <PostsList userId={user.id} />

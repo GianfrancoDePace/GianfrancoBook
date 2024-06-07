@@ -1,17 +1,28 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import { useMutation } from '@apollo/client';
-import { ADD_POST } from '../Queries/GetData';
+import { ADD_POST, GET_POSTS } from '../Queries/GetData';
 
-const AddPostForm = ({ userId }) => {
+const CreatePost = ({ userId, onPostAdded }) => {
   const [content, setContent] = useState('');
-  const [addPost, { loading, error }] = useMutation(ADD_POST);
+  const [addPost, { loading, error }] = useMutation(ADD_POST, {
+    update: (cache, { data: { addPost } }) => {
+      const { posts } = cache.readQuery({ query: GET_POSTS });
+      cache.writeQuery({
+        query: GET_POSTS,
+        data: { posts: posts.concat([addPost]) },
+      });
+    },
+  });
 
   const handleAddPost = () => {
     addPost({ variables: { content, authorId: userId } })
       .then(() => {
         Alert.alert('Post created successfully');
         setContent('');
+        if (onPostAdded) {
+          onPostAdded(); // Call the callback to update the post count
+        }
       })
       .catch((err) => {
         Alert.alert('Error creating post', err.message);
@@ -62,4 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddPostForm;
+export default CreatePost;
