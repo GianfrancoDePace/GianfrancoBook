@@ -9,7 +9,7 @@ import HomeScreen from "./pages/Home";
 import UserProfile from "./pages/userProfile";
 
 const client = new ApolloClient({
-  uri: "http://185.229.236.248:4000/", // URL of your Apollo Server
+  uri: "http://192.168.1.30:4000", // URL of your Apollo Serverq
   cache: new InMemoryCache(),
 });
 
